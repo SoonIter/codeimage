@@ -2,7 +2,7 @@ import {Box, Link} from '@codeimage/ui';
 import {getUmami} from '@core/constants/umami';
 import {createControlledDialog} from '@core/hooks/createControlledDialog';
 import {Changelog} from '../Changelog/Changelog';
-import {link, linkOnlyDesktop} from './Footer.css';
+import {link} from './Footer.css';
 import * as styles from './Footer.css';
 
 export const Footer = () => {
