@@ -251,3 +251,62 @@ export const ctaContainer = style(
     },
   }),
 );
+
+export const advertisingBanner = style([
+  responsiveStyle({
+    mobile: {
+      width: '100%',
+    },
+    tablet: {
+      maxWidth: '400px',
+    },
+    desktop: {
+      maxWidth: '460px',
+    },
+  }),
+  {
+    display: 'flex',
+    padding: themeVars.spacing['6'],
+    paddingBlock: themeVars.spacing['5'],
+    flexDirection: 'column',
+    gap: themeVars.spacing['4'],
+    borderRadius: themeVars.borderRadius.lg,
+    alignItems: 'flex-start',
+    background: 'hsla(204, 100%, 50%, .15)',
+  },
+]);
+
+export const advertisingDescription = style([
+  {
+    maxWidth: '860px',
+    textAlign: 'left',
+    fontSize: '44px',
+    lineHeight: '100%',
+    margin: 0,
+  },
+  responsiveStyle({
+    mobile: {
+      fontSize: '24px',
+    },
+    tablet: {
+      fontSize: '32px',
+      width: '100%',
+    },
+    desktop: {
+      fontSize: '1.35em',
+      maxWidth: '44rem',
+      fontWeight: 400,
+      lineHeight: '1.25',
+    },
+  }),
+]);
+
+export const advertisingBadge = style({
+  backgroundColor: themeVars.dynamicColors.button.primaryAlt.backgroundColor,
+  letterSpacing: '1px',
+  minWidth: 'auto',
+  paddingInline: themeVars.spacing['4'],
+  paddingBlock: themeVars.spacing['2'],
+  fontWeight: 500,
+  borderRadius: '9999px',
+});

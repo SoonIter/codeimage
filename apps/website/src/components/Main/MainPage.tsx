@@ -1,9 +1,13 @@
-import {Button} from '@codeimage/ui';
+import {Button, Badge} from '@codeimage/ui';
 import {useRouteData} from '@solidjs/router';
 import {createSignal} from 'solid-js';
+import {
+  advertisingBadge,
+  advertisingDescription,
+} from '~/components/Main/MainPage.css';
 import * as styles from '~/components/Main/MainPage.css';
 import {breakpoints} from '~/theme/breakpoints';
-import {mainWebsiteLink} from '~/core/constants';
+import {betterCommentsForGitHubLink, mainWebsiteLink} from '~/core/constants';
 import {routeData} from '~/routes';
 import {GitHubButton} from '../GitHubButton/GitHubButton';
 import {Header} from '../Header/Header';
@@ -23,8 +27,8 @@ export default function MainPage() {
           <div class={styles.textBox}>
             <div class={styles.heroContainer}>
               <h1 class={styles.heading}>
-                A tool to <br /> <span class={styles.screenshot}>beautify</span>{' '}
-                your <span class={styles.screenshot}>code</span> screenshots
+                <span class={styles.screenshot}>Beautify</span> your{' '}
+                <span class={styles.screenshot}>code</span> screenshots
               </h1>
 
               <p class={styles.mobileDescription}>
@@ -46,6 +50,29 @@ export default function MainPage() {
               </Button>
 
               <GitHubButton loading={loading()} stars={stars()} />
+            </div>
+
+            <div class={styles.ctaContainer}>
+              <div class={styles.advertisingBanner}>
+                <span class={styles.advertisingBadge}>NEW!</span>
+
+                <div class={styles.advertisingDescription}>
+                  Improve now your <strong>GitHub comments experience</strong>!
+                  Try the new browser extension from <strong>CodeImage</strong>{' '}
+                  creator!
+                </div>
+
+                <Button
+                  as={'a'}
+                  rel={'canonical'}
+                  href={betterCommentsForGitHubLink}
+                  size={'md'}
+                  variant={'solid'}
+                  theme={'primaryAlt'}
+                >
+                  Try Better Comments For GitHub
+                </Button>
+              </div>
             </div>
           </div>
           <div class={styles.imagePerspectiveBox} ref={imageBox}>
