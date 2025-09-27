@@ -1,5 +1,4 @@
 import {HStack, Link, Text} from '@codeimage/ui';
-import {onlyDesktopLink} from '~/components/Footer/Footer.css';
 import * as styles from '~/components/Footer/Footer.css';
 
 export default function Footer() {
@@ -27,6 +26,7 @@ export default function Footer() {
               href={
                 'https://github.com/riccardoperra/better-comments-for-github'
               }
+              target={'_blank'}
               title="Better Comments for GitHub"
               children={'GitHub'}
             />

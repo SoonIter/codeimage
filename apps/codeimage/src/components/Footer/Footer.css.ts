@@ -1,3 +1,4 @@
+import {responsiveStyle} from '@codeui/kit';
 import {style} from '@vanilla-extract/css';
 import {themeVars} from '@codeimage/ui';
 
@@ -21,3 +22,14 @@ export const link = style({
     },
   },
 });
+
+export const linkOnlyDesktop = style(
+  responsiveStyle({
+    xs: {
+      display: 'none',
+    },
+    md: {
+      display: 'inline-block',
+    },
+  }),
+);
