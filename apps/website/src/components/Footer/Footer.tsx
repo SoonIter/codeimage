@@ -1,4 +1,5 @@
 import {HStack, Link, Text} from '@codeimage/ui';
+import {onlyDesktopLink} from '~/components/Footer/Footer.css';
 import * as styles from '~/components/Footer/Footer.css';
 
 export default function Footer() {
@@ -20,6 +21,15 @@ export default function Footer() {
           </div>
 
           <HStack spacing={'8'}>
+            <Link
+              class={`${styles.link} ${styles.onlyDesktopLink}`}
+              underline={true}
+              href={
+                'https://github.com/riccardoperra/better-comments-for-github'
+              }
+              title="Better Comments for GitHub"
+              children={'GitHub'}
+            />
             <Link
               class={styles.link}
               underline={true}

@@ -38,6 +38,17 @@ export const info = style([
   },
 ]);
 
+export const onlyDesktopLink = style(
+  responsiveStyle({
+    mobile: {
+      display: 'none',
+    },
+    desktop: {
+      display: 'inline-flex',
+    },
+  }),
+);
+
 export const link = style({
   color: themeVars.dynamicColors.descriptionTextColor,
 
