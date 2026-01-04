@@ -26,11 +26,13 @@ export const FOLDER_ICONS: Record<string, FolderIconDefinition> = {
   },
   components: {
     name: 'folder-components',
-    content: () => import('material-icon-theme/icons/folder-components.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-components.svg?raw'),
   },
   component: {
     name: 'folder-components',
-    content: () => import('material-icon-theme/icons/folder-components.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-components.svg?raw'),
   },
   hooks: {
     name: 'folder-hook',
@@ -65,16 +67,16 @@ export const FOLDER_ICONS: Record<string, FolderIconDefinition> = {
     content: () => import('material-icon-theme/icons/folder-core.svg?raw'),
   },
   locales: {
-    name: 'folder-locale',
-    content: () => import('material-icon-theme/icons/folder-locale.svg?raw'),
+    name: 'folder-i18n',
+    content: () => import('material-icon-theme/icons/folder-i18n.svg?raw'),
   },
   locale: {
-    name: 'folder-locale',
-    content: () => import('material-icon-theme/icons/folder-locale.svg?raw'),
+    name: 'folder-i18n',
+    content: () => import('material-icon-theme/icons/folder-i18n.svg?raw'),
   },
   i18n: {
-    name: 'folder-locale',
-    content: () => import('material-icon-theme/icons/folder-locale.svg?raw'),
+    name: 'folder-i18n',
+    content: () => import('material-icon-theme/icons/folder-i18n.svg?raw'),
   },
   assets: {
     name: 'folder-images',
@@ -138,11 +140,13 @@ export const FOLDER_ICONS: Record<string, FolderIconDefinition> = {
   },
   types: {
     name: 'folder-typescript',
-    content: () => import('material-icon-theme/icons/folder-typescript.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-typescript.svg?raw'),
   },
   typings: {
     name: 'folder-typescript',
-    content: () => import('material-icon-theme/icons/folder-typescript.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-typescript.svg?raw'),
   },
   pages: {
     name: 'folder-views',
@@ -158,15 +162,18 @@ export const FOLDER_ICONS: Record<string, FolderIconDefinition> = {
   },
   store: {
     name: 'folder-redux-store',
-    content: () => import('material-icon-theme/icons/folder-redux-store.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-redux-store.svg?raw'),
   },
   stores: {
     name: 'folder-redux-store',
-    content: () => import('material-icon-theme/icons/folder-redux-store.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-redux-store.svg?raw'),
   },
   state: {
     name: 'folder-redux-store',
-    content: () => import('material-icon-theme/icons/folder-redux-store.svg?raw'),
+    content: () =>
+      import('material-icon-theme/icons/folder-redux-store.svg?raw'),
   },
   docs: {
     name: 'folder-docs',
