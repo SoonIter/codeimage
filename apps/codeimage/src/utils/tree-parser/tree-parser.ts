@@ -77,6 +77,12 @@ function calculateIndent(line: string): number {
 
     // Check for branch characters (├── or └──)
     if (char === '├' || char === '└') {
+      if (
+        line.substring(i, i + 3) === '├──' ||
+        line.substring(i, i + 3) === '└──'
+      ) {
+        indent++;
+      }
       break;
     }
 

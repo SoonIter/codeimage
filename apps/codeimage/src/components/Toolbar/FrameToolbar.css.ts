@@ -26,3 +26,8 @@ export const frameToolbar = style({
   transform: 'translateX(-50%)',
   zIndex: themeVars.zIndex['40'],
 });
+
+export const segmentedField = style({
+  height: '100%',
+  width: '100%',
+});

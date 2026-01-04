@@ -59,6 +59,10 @@ export function FileTreeItem(props: VoidProps<FileTreeItemProps>) {
         when={isDirectory() && props.node.children.length > 0 && expanded()}
       >
         <div class={styles.children}>
+          <div
+            class={styles.indentGuide}
+            style={{left: `${props.depth * INDENT_SIZE + 6}px`}}
+          />
           <For each={props.node.children}>
             {child => <FileTreeItem node={child} depth={props.depth + 1} />}
           </For>

@@ -66,12 +66,15 @@ export function FrameToolbar(props: FrameToolbarProps) {
     <div class={styles.frameToolbar}>
       <HStack spacing={2}>
         <Show when={isTreeFile()}>
-          <SegmentedField
-            items={VIEW_MODE_ITEMS}
-            value={currentViewMode()}
-            onChange={handleViewModeChange}
-            size="xs"
-          />
+          <div style={{width: '170px', height: '100%'}}>
+            <SegmentedField
+              items={VIEW_MODE_ITEMS}
+              value={currentViewMode()}
+              onChange={handleViewModeChange}
+              size="xs"
+              class={styles.segmentedField}
+            />
+          </div>
         </Show>
         <ExportSettingsButton />
         <CopyToClipboardButton canvasRef={props.frameRef} />

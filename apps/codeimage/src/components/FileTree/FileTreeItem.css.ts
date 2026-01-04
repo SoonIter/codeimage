@@ -63,4 +63,16 @@ export const name = style({
 export const children = style({
   display: 'flex',
   flexDirection: 'column',
+  position: 'relative',
+});
+
+export const indentGuide = style({
+  position: 'absolute',
+  left: '6px',
+  top: 0,
+  bottom: 0,
+  width: '1px',
+  backgroundColor: 'currentColor',
+  opacity: 0.1,
+  pointerEvents: 'none',
 });

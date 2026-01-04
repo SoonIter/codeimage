@@ -25,6 +25,7 @@ interface SegmentedFieldProps<T> {
   onChange?: (value: T) => void;
   size?: UseTextProps['size'];
   id?: string;
+  class?: string;
 }
 
 export function SegmentedField<T>(props: SegmentedFieldProps<T>): JSX.Element {
@@ -76,7 +77,7 @@ export function SegmentedField<T>(props: SegmentedFieldProps<T>): JSX.Element {
   const segmentedTextStyle = useText(props);
 
   return (
-    <Box class={clsx(styles.wrapper)} id={props.id}>
+    <Box class={clsx(styles.wrapper, props.class)} id={props.id}>
       <div class={styles.box} ref={setContainer}>
         <div
           style={assignInlineVars({
