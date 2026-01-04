@@ -1,7 +1,11 @@
 import {getRootEditorStore} from '@codeimage/store/editor';
+import {getActiveEditorStore} from '@codeimage/store/editor/activeEditor';
+import {getThemeStore} from '@codeimage/store/theme/theme.store';
 import {Annotation, Transaction} from '@codemirror/state';
 import {EditorView} from '@codemirror/view';
-import {createEffect, createSignal, lazy, on} from 'solid-js';
+import {createEffect, createMemo, createSignal, lazy, on, Show} from 'solid-js';
+import {parseTreeContent} from '../../utils/tree-parser/tree-parser';
+import {FileTree} from '../FileTree';
 
 const syncAnnotation = Annotation.define<boolean>();
 
@@ -22,6 +26,23 @@ interface PreviewExportEditorProps {
 
 export default function PreviewExportEditor(props: PreviewExportEditorProps) {
   const [editorView, setEditorView] = createSignal<EditorView>();
+  const activeEditorStore = getActiveEditorStore();
+  const {themeArray: themes} = getThemeStore();
+  const {state: editorState} = getRootEditorStore();
+
+  const viewMode = () => activeEditorStore.editor()?.viewMode ?? 'editor';
+
+  const themeConfiguration = createMemo(
+    () =>
+      themes().find(theme => theme()?.id === editorState.options.themeId)?.() ??
+      themes()[0]()!,
+  );
+
+  const parsedTree = createMemo(() => {
+    if (viewMode() !== 'filetree') return null;
+    const code = activeEditorStore.editor()?.code ?? '';
+    return parseTreeContent(code);
+  });
 
   createEffect(
     on(editorView, editorView => {
@@ -34,12 +55,22 @@ export default function PreviewExportEditor(props: PreviewExportEditorProps) {
   );
 
   return (
-    <CustomEditor
-      onEditorViewChange={editorView => {
-        props.onSetEditorView(editorView);
-        setEditorView(editorView);
-      }}
-      readOnly={true}
-    />
+    <Show
+      when={viewMode() === 'filetree' && parsedTree()}
+      fallback={
+        <CustomEditor
+          onEditorViewChange={editorView => {
+            props.onSetEditorView(editorView);
+            setEditorView(editorView);
+          }}
+          readOnly={true}
+        />
+      }
+    >
+      <FileTree
+        nodes={parsedTree()!.nodes}
+        textColor={themeConfiguration()?.properties.terminal.text}
+      />
+    </Show>
   );
 }

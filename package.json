@@ -101,5 +101,6 @@
   },
   "dependencies": {
     "statebuilder": "^0.4.2"
-  }
+  },
+  "packageManager": "pnpm@7.33.5"
 }

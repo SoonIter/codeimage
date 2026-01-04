@@ -1,6 +1,7 @@
 import {useI18n} from '@codeimage/locale';
 import {getRootEditorStore} from '@codeimage/store/editor';
 import {getActiveEditorStore} from '@codeimage/store/editor/activeEditor';
+import {getThemeStore} from '@codeimage/store/theme/theme.store';
 import {getUiStore} from '@codeimage/store/ui';
 import {HStack, toast} from '@codeimage/ui';
 import {EditorView} from '@codemirror/view';
@@ -10,8 +11,10 @@ import {
   createEditorControlledValue,
   createEditorFocus,
 } from 'solid-codemirror';
-import {Accessor, createEffect, createSignal, on} from 'solid-js';
+import {Accessor, createEffect, createMemo, createSignal, on, Show} from 'solid-js';
 import {AppLocaleEntries} from '../../i18n';
+import {parseTreeContent} from '../../utils/tree-parser/tree-parser';
+import {FileTree} from '../FileTree';
 import {SparklesIcon} from '../Icons/SparklesIcon';
 import CustomEditor from './CustomEditor';
 
@@ -22,10 +25,25 @@ interface CanvasEditorProps {
 export default function CanvasEditor(props: CanvasEditorProps) {
   const [editorView, setEditorView] = createSignal<EditorView>();
   const activeEditorStore = getActiveEditorStore();
+  const {themeArray: themes} = getThemeStore();
   const {
     state: editorState,
     actions: {setFocused},
   } = getRootEditorStore();
+
+  const viewMode = () => activeEditorStore.editor()?.viewMode ?? 'editor';
+
+  const themeConfiguration = createMemo(
+    () =>
+      themes().find(theme => theme()?.id === editorState.options.themeId)?.() ??
+      themes()[0]()!,
+  );
+
+  const parsedTree = createMemo(() => {
+    if (viewMode() !== 'filetree') return null;
+    const code = activeEditorStore.editor()?.code ?? '';
+    return parseTreeContent(code);
+  });
 
   const {setFocused: editorSetFocused} = createEditorFocus(
     editorView as Accessor<EditorView>,
@@ -106,10 +124,20 @@ export default function CanvasEditor(props: CanvasEditorProps) {
   );
 
   return (
-    <CustomEditor
-      onEditorViewChange={setEditorView}
-      onValueChange={activeEditorStore.setCode}
-      readOnly={props.readOnly}
-    />
+    <Show
+      when={viewMode() === 'filetree' && parsedTree()}
+      fallback={
+        <CustomEditor
+          onEditorViewChange={setEditorView}
+          onValueChange={activeEditorStore.setCode}
+          readOnly={props.readOnly}
+        />
+      }
+    >
+      <FileTree
+        nodes={parsedTree()!.nodes}
+        textColor={themeConfiguration()?.properties.terminal.text}
+      />
+    </Show>
   );
 }

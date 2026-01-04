@@ -13,6 +13,8 @@ export interface TabState {
   tabIcon?: string;
 }
 
+export type ViewMode = 'editor' | 'filetree';
+
 export interface EditorState {
   id: string;
   code: string;
@@ -20,6 +22,7 @@ export interface EditorState {
   formatter?: string | null;
   languageId: string;
   lineNumberStart: number;
+  viewMode: ViewMode;
 }
 
 export interface EditorUIOptions {

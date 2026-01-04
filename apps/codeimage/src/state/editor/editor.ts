@@ -12,7 +12,7 @@ import {createSelector} from 'solid-js';
 import {SetStoreFunction} from 'solid-js/store';
 import {defineStore, provideState} from 'statebuilder';
 import {createCommand, withProxyCommands} from 'statebuilder/commands';
-import {EditorState, EditorUIOptions, PersistedEditorState} from './model';
+import {EditorState, EditorUIOptions, PersistedEditorState, ViewMode} from './model';
 
 const defaultId = createUniqueId();
 
@@ -23,6 +23,7 @@ export function getInitialEditorState(): EditorState {
     languageId: appEnvironment.defaultState.editor.languageId,
     formatter: null,
     lineNumberStart: 1,
+    viewMode: 'editor',
     tab: {
       tabName: 'index.tsx',
       tabIcon: undefined,
@@ -59,6 +60,7 @@ export function createEditorsStore() {
       setFromPersistedState: PersistedEditorState;
       setFromPreset: PresetData['editor'];
       setEnableLigatures: boolean;
+      setViewMode: {editorId: string; viewMode: ViewMode};
     }>(),
   );
 
@@ -93,6 +95,12 @@ export function createEditorsStore() {
     .hold(store.commands.setEnableLigatures, (enable, {set}) =>
       set('options', 'enableLigatures', enable),
     )
+    .hold(store.commands.setViewMode, ({editorId, viewMode}, {set, state}) => {
+      const index = state.editors.findIndex(e => e.id === editorId);
+      if (index !== -1) {
+        set('editors', index, 'viewMode', viewMode);
+      }
+    })
     .hold(store.commands.setFromPreset, presetData => {
       store.set('options', presetData);
       store.dispatch(editorUpdateCommand, void 0);
