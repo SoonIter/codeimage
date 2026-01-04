@@ -4,6 +4,7 @@ import {ParsedTree, TreeNode} from './types';
  * Parse tree-style directory structure text into TreeNode array
  *
  * Supported formats:
+ * doc_build
  * ├── file.ts
  * └── folder
  *     ├── nested.ts

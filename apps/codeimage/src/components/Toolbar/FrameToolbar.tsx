@@ -6,7 +6,9 @@ import {Button} from '@codeui/kit';
 import {createAsyncAction} from '@core/hooks/async-action';
 import {createMemo, Show} from 'solid-js';
 import {ViewMode} from '../../state/editor/model';
+import {CodeIcon} from '../Icons/Code';
 import {ColorSwatchIcon} from '../Icons/ColorSwatch';
+import {FolderIcon} from '../Icons/Folder';
 import {SparklesIcon} from '../Icons/SparklesIcon';
 import {CopyToClipboardButton} from './CopyToClipboardButton';
 import {ExportInNewTabButton} from './ExportNewTabButton';
@@ -14,8 +16,24 @@ import {ExportSettingsButton} from './ExportSettingsButton';
 import * as styles from './FrameToolbar.css';
 
 const VIEW_MODE_ITEMS: readonly SegmentedFieldItem<ViewMode>[] = [
-  {label: 'Code', value: 'editor'},
-  {label: 'Tree', value: 'filetree'},
+  {
+    label: (
+      <div style={{display: 'flex', 'align-items': 'center', gap: '6px'}}>
+        <CodeIcon style={{width: '16px', height: '16px'}} />
+        <span>Code</span>
+      </div>
+    ),
+    value: 'editor',
+  },
+  {
+    label: (
+      <div style={{display: 'flex', 'align-items': 'center', gap: '6px'}}>
+        <FolderIcon style={{width: '16px', height: '16px'}} />
+        <span>Tree</span>
+      </div>
+    ),
+    value: 'filetree',
+  },
 ] as const;
 
 interface FrameToolbarProps {
